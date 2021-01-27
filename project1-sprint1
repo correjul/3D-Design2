@@ -16,15 +16,15 @@ void setup() {
   Serial.begin(9600);
 }
 
+
 void loop() {
-  colorBlink(strip.Color(255,   0,   0), 500); // Red
-  colorWipe(20000, 65000, 80);
-
-
+  colorWipe(100, 10000, 50);
+  colorWipe(20000, 65000, 50);
 }
 
+
 void colorWipe(long color1, long color2, int wait) {
-    for(int j=color1; j<=color2; j+=100){
+    for(int j=color1; j<=color2; j+=256){
       for(int i=0; i<strip.numPixels(); i++) { // For each pixel in strip...
         strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(j)));         
         strip.show();
@@ -32,13 +32,3 @@ void colorWipe(long color1, long color2, int wait) {
     }  
   }
 }
-
-void colorBlink(uint32_t color, int wait) {
-  for(int i=0; i<strip.numPixels(); i++) { // For each pixel in strip...
-    strip.setPixelColor(i, color);         //  Set pixel's color (in RAM)
-    strip.show();                          //  Update strip to match
-    delay(wait);                           //  Pause for a moment
-  }
-}
-
-
