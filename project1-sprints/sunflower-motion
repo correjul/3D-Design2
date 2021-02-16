@@ -1,0 +1,26 @@
+//Standard sevrvo motor follows the brightest light
+//Photoresistors are used to take readings of light
+//Julia Correia
+
+#include  <Servo.h>
+Servo myServo; 
+
+int sensor1 = A0;
+int sensor2 = A5;
+
+void setup() {
+  myServo.attach(9); 
+  Serial.begin(9600);
+}
+
+void loop(){
+
+  int reading1 = analogRead(sensor1);
+  int reading2 = analogRead(sensor2);
+  
+  if (reading1 < reading2) {
+    myServo.write(120);
+  } else if (reading1 > reading2) {
+    myServo.write(40);
+  }
+}
