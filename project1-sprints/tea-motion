@@ -1,0 +1,66 @@
+//servo motor operated by button push with light indicators
+//Julia Correia
+
+#include  <Servo.h>
+
+Servo myServo;
+
+int ledGreen = 9;
+int ledBlue = 10;
+int ledRed = 11;
+
+int button = 3;
+int buttonState = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+  myServo.attach(6);
+
+  pinMode(ledBlue, OUTPUT);
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+
+  pinMode(button, INPUT);
+
+}
+
+void loop() {
+  digitalWrite(button, HIGH);
+
+  buttonState = digitalRead(button);
+
+  //run the tea dunk unction if the button is pressed
+  //if the button has not been pressed enable idle light
+  if (buttonState == LOW) {
+    teaDunk();
+  }else if (buttonState == HIGH) {
+    digitalWrite(ledRed, HIGH);
+    digitalWrite(ledGreen, LOW);
+  }
+}
+
+void teaDunk() {
+  //turn on in-progress light
+  digitalWrite(ledRed, LOW);
+  digitalWrite(ledBlue, HIGH);
+  //run the loop three times
+  for (int i = 0; i < 3; i++) {
+    //start of code from Sweep Example
+    for (int pos = 0; pos <= 180; pos += 1) { 
+      // in steps of 1 degree
+      myServo.write(pos);              
+      delay(10);                       
+    }
+    for (int pos = 180; pos >= 0; pos -= 1) { 
+      myServo.write(pos);              
+      delay(10);  
+      //end of code from sweep example                     
+    }
+  }
+  //enable green light when finished
+  digitalWrite(ledBlue, LOW);
+  digitalWrite(ledGreen, HIGH);
+  digitalWrite(button, HIGH);
+  delay(2000);
+}
