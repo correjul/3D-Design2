@@ -1,0 +1,39 @@
+//Controlling the speed of a servo motor based on the light reading of a photoresistor
+//Julia Correia
+//Last Modified Feb 2021
+
+#include  <Servo.h>
+
+Servo myServo; 
+
+int sensor = A4;
+
+void setup() {
+  myServo.attach(9); 
+  Serial.begin(9600);
+}
+
+void loop() {
+  //take reading from photoresistor
+  int reading = analogRead(sensor);
+
+  //Check reading of sensor
+  Serial.print(reading);
+  Serial.print(";");
+
+  //map sensor values to speed values
+  reading  = map(reading, 0, 310, 1, 15);
+
+  //start of code from sweep example
+  //for loop that increments the motor degrees until the max value and back to the min value
+  //the speed value is used to determine the amount the for loop increments  
+  for (int pos = 0; pos <= 180; pos += reading) {
+    myServo.write(pos);
+    delay(15);
+  }
+  for (int pos = 180; pos >= 0; pos -= reading) {
+    myServo.write(pos);
+    delay(15);
+  }
+  //end of code from sweep example 
+}
