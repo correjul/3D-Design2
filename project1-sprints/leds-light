@@ -1,0 +1,38 @@
+//LED program that combines differnt primary colours
+//Last Edit Feb 2021
+//Julia Correia
+
+int ledRed = 9;
+int ledGreen = 10;
+int ledBlue = 11;
+
+void setup() {
+  pinMode(ledBlue, OUTPUT);
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+
+}
+
+void loop() {
+  //turn on and off lights in different combinations
+  digitalWrite(ledRed, HIGH);
+  digitalWrite(ledGreen, HIGH);
+  digitalWrite(ledBlue, HIGH);
+
+  //delay so the light can be seen
+  delay(2000);
+
+  digitalWrite(ledRed, LOW);
+
+  delay(2000);
+
+  digitalWrite(ledRed, HIGH);
+  digitalWrite(ledGreen, LOW);
+
+  delay(2000);
+
+  digitalWrite(ledGreen, HIGH);
+  digitalWrite(ledBlue, LOW);
+
+  delay(2000);
+}
