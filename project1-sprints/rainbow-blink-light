@@ -30,8 +30,10 @@ void loop() {
 }
 
 //function to transition between colours
+//start of code from strandtest example
 void colorWipe(uint32_t color, int wait) {
   strip.setPixelColor(0, color);
   strip.show();
   delay(wait);
 }
+//end of code from strandtest example
