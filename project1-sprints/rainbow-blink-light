@@ -1,0 +1,37 @@
+//Flash all the colours of the rainbow with a neopixel
+//Last edit Feb 2021
+//Julia Correia
+
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN 6
+
+#define LED_COUNT 1
+
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  strip.begin();
+  strip.show();
+  strip.setBrightness(40); 
+
+}
+
+void loop() {
+  //insert the colours of the rainbow with a delay between colours
+  colorWipe(strip.Color(255,   0,   0), 800);
+  colorWipe(strip.Color(235, 146, 52), 800);
+  colorWipe(strip.Color(252, 252, 0), 800);
+  colorWipe(strip.Color(94, 245, 44), 800);
+  colorWipe(strip.Color(44, 138, 245), 800);
+  colorWipe(strip.Color(5, 252, 236), 800);
+  colorWipe(strip.Color(149, 10, 242), 800);
+}
+
+//function to transition between colours
+void colorWipe(uint32_t color, int wait) {
+  strip.setPixelColor(0, color);
+  strip.show();
+  delay(wait);
+}
