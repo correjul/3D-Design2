@@ -15,10 +15,11 @@ void setup() {
 }
 
 void loop(){
-
+  //take reading from sensor
   int reading1 = analogRead(sensor1);
   int reading2 = analogRead(sensor2);
   
+  //point motor towards the thr photoresistor with the hightest value
   if (reading1 < reading2) {
     myServo.write(120);
   } else if (reading1 > reading2) {
