@@ -1,6 +1,8 @@
 //gradual transition between green and blue
 //uses neopixel Flora
 //colours in HSB format expressed as a 16-bit number
+//3D Design 2 Project 1: Sprints
+//Light Sprint
 //Julia Correia
 //last edit Feb 2021
 
