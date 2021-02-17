@@ -1,5 +1,6 @@
 //Standard sevrvo motor follows the brightest light
 //Photoresistors are used to take readings of light
+//last edit Feb 2021
 //Julia Correia
 
 #include  <Servo.h>
